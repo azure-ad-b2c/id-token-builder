@@ -1,0 +1,134 @@
+﻿@model B2CIdTokenBuilder.Models.TokenGenerationRequest
+
+@{
+    ViewBag.Title = "Azure AD B2C ID Token Builder";
+
+    Model.Claim1Name = "email";
+    Model.Claim1Value = "susan.white@contoso.com";
+}
+
+<h1>
+    @ViewBag.Title
+    <a class="btn btn-default pull-right" href="@Url.RouteUrl("OIDC Metadata")" target="_blank">OIDC Metadata</a>
+</h1>
+
+<hr />
+
+<form id="inviteForm">
+
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="form-group">
+                @Html.LabelFor(m => m.B2CTenant, "B2C Tenant")
+                <div class="input-group">
+                    @Html.TextBoxFor(m => m.B2CTenant, new { @class = "form-control" })
+                    <span class="input-group-addon">.onmicrosoft.com</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="form-group">
+                @Html.LabelFor(m => m.B2CPolicy, "B2C Policy")
+                @Html.TextBoxFor(m => m.B2CPolicy, new { @class = "form-control" })
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="form-group">
+                @Html.LabelFor(m => m.ClientId, "Client ID")
+                @Html.TextBoxFor(m => m.ClientId, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="form-group">
+                @Html.LabelFor(m => m.ReplyUrl, "Redirect URI")
+                @Html.TextBoxFor(m => m.ReplyUrl, new { @class = "form-control" })
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="form-group">
+                @Html.TextBoxFor(m => m.Claim1Name, new { @class = "form-control", placeholder = "Claim name" })
+                @Html.TextBoxFor(m => m.Claim1Value, new { @class = "form-control", placeholder = "Claim value" })
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="form-group">
+                @Html.TextBoxFor(m => m.Claim2Name, new { @class = "form-control", placeholder = "Claim name" })
+                @Html.TextBoxFor(m => m.Claim2Value, new { @class = "form-control", placeholder = "Claim value" })
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="form-group">
+                @Html.TextBoxFor(m => m.Claim3Name, new { @class = "form-control", placeholder = "Claim name" })
+                @Html.TextBoxFor(m => m.Claim3Value, new { @class = "form-control", placeholder = "Claim value" })
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="form-group">
+                @Html.TextBoxFor(m => m.Claim4Name, new { @class = "form-control", placeholder = "Claim name" })
+                @Html.TextBoxFor(m => m.Claim4Value, new { @class = "form-control", placeholder = "Claim value" })
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="form-group">
+                @Html.TextBoxFor(m => m.Claim5Name, new { @class = "form-control", placeholder = "Claim name" })
+                @Html.TextBoxFor(m => m.Claim5Value, new { @class = "form-control", placeholder = "Claim value" })
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="form-group">
+                @Html.TextBoxFor(m => m.Claim6Name, new { @class = "form-control", placeholder = "Claim name" })
+                @Html.TextBoxFor(m => m.Claim6Value, new { @class = "form-control", placeholder = "Claim value" })
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="form-group">
+                @Html.TextBoxFor(m => m.Claim7Name, new { @class = "form-control", placeholder = "Claim name" })
+                @Html.TextBoxFor(m => m.Claim7Value, new { @class = "form-control", placeholder = "Claim value" })
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="form-group">
+                @Html.TextBoxFor(m => m.Claim8Name, new { @class = "form-control", placeholder = "Claim name" })
+                @Html.TextBoxFor(m => m.Claim8Value, new { @class = "form-control", placeholder = "Claim value" })
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Generate token and link</button>
+    </div>
+</form>
+
+<div id="result"></div>
+
+@section scripts {
+    <script>
+
+        jQuery(function ($) {
+
+            $("#inviteForm").submit(function (ev) {
+                ev.preventDefault();
+
+                var formData = $(this).serialize();
+
+                $.post("@Url.Action("GenerateToken")", formData, function (result) {
+                    $("#result").html(result)
+                });
+            })
+
+        })
+
+    </script>
+}
