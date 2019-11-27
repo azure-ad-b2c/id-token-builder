@@ -35,5 +35,5 @@ If you publish the application to Azure App Service, you'll need to configure a 
 1. First, export your certificate as a PFX file using the User Certificates management tool (or create a new one)
 2. Upload your certificate in the **Private Certificates** tab of the **SSL Settings** blade of your Azure App Service
 3. Under the App Service, Click **Configuration**
-4. Click **Application Settings**, and then **New Application Setting**.
-5. Enter Name: `WEBSITE_LOAD_CERTIFICATES`, and Value: `*`.
+4. Click **Application Settings**, and then **New Application Setting**
+5. Enter Name: `WEBSITE_LOAD_CERTIFICATES`, and Value: `*`
