@@ -34,4 +34,6 @@ To inspect the generated token, copy and paste it into a tool like [JWT.ms](httt
 If you publish the application to Azure App Service, you'll need to configure a valid certificate with a private key in Azure App Service.
 1. First, export your certificate as a PFX file using the User Certificates management tool (or create a new one)
 2. Upload your certificate in the **Private Certificates** tab of the **SSL Settings** blade of your Azure App Service
-3. Follow [these instructions](https://docs.microsoft.com/en-us/azure/app-service/app-service-web-ssl-cert-load#load-your-certificates) to ensure App Service loads the certificate when the app runs
+3. Under the App Service, Click **Configuration**
+4. Click **Application Settings**, and then **New Application Setting**.
+5. Enter Name: `WEBSITE_LOAD_CERTIFICATES`, and Value: `*`.
